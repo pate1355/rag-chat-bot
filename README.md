@@ -2,7 +2,7 @@
 
 A premium, full-stack **Retrieval-Augmented Generation (RAG)** chatbot built with React, Node.js, and Google's Gemini AI. This application allows users to upload multiple documents (PDF, DOCX, TXT) and have natural conversations about their content, with support for specific file referencing and streaming responses.
 
-![Project Preview](https://via.placeholder.com/800x450.png?text=RAG+Chatbot+Preview)
+![Project Preview](site_ui_picture.png)
 *(Replace this with an actual screenshot of your UI)*
 
 ## ✨ Key Features
