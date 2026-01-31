@@ -233,16 +233,39 @@ const ChatInterface = ({ uploadedDocs }) => {
 
         <div className="flex gap-3 items-end">
           <div className="flex-1 relative">
-            <textarea
-              ref={textareaRef}
-              value={message}
-              onChange={handleInputChange}
-              onKeyDown={handleKeyDown}
-              placeholder="Ask a question... Use @filename to reference specific docs"
-              className="message-input w-full p-4 pr-4 bg-white border-2 border-gray-200 rounded-2xl focus:border-indigo-400 focus:ring-0 resize-none text-gray-800 placeholder-gray-400"
-              rows="2"
-              disabled={isLoading}
-            />
+            <div className="relative w-full rounded-2xl bg-white border-2 border-gray-200 focus-within:border-indigo-400 overflow-hidden min-h-[58px]">
+              {/* Highlight Overlay */}
+              <div
+                aria-hidden="true"
+                className="absolute inset-0 p-4 font-sans text-base leading-normal whitespace-pre-wrap break-words pointer-events-none text-transparent bg-transparent z-0"
+              >
+                {message.split(/(@[\w.-]+)/g).map((part, i) => {
+                  if (part.startsWith('@')) {
+                    return (
+                      <span key={i} className="bg-indigo-100 text-transparent rounded px-0.5 -mx-0.5 ring-1 ring-indigo-200">
+                        {part}
+                      </span>
+                    );
+                  }
+                  return <span key={i}>{part}</span>;
+                })}
+                {/* Add a zero-width space at the end to ensure the last line height is respected if empty */}
+                &#8203;
+              </div>
+
+              {/* Actual Input */}
+              <textarea
+                ref={textareaRef}
+                value={message}
+                onChange={handleInputChange}
+                onKeyDown={handleKeyDown}
+                placeholder={!message ? "Ask a question... Use @filename to reference specific docs" : ""}
+                className="relative w-full h-full p-4 bg-transparent border-none focus:ring-0 resize-none text-gray-800 placeholder-gray-400 z-10 font-sans text-base leading-normal"
+                rows="2"
+                style={{ caretColor: '#1f2937' }} // gray-800
+                disabled={isLoading}
+              />
+            </div>
           </div>
           <button
             type="submit"
