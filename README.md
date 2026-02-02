@@ -82,6 +82,9 @@ npm run dev
 # App runs on http://localhost:3000
 ```
 
+## Link 
+[Click here](https://rag-chats-bot.netlify.app) to check out the live demo.
+
 ## 📖 Usage Guide
 
 1.  **Upload Documents**: Drag & drop PDF, DOCX, or TXT files into the upload zone. You can upload up to 5 files.
